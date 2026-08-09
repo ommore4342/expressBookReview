@@ -1,0 +1,22 @@
+{
+  "9780143126560": {
+    "isbn": "9780143126560",
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "reviews": {
+      "alice": "A thought-provoking overview of human history."
+    }
+  },
+  "9780307271037": {
+    "isbn": "9780307271037",
+    "title": "The Omnivore's Dilemma",
+    "author": "Michael Pollan",
+    "reviews": {}
+  },
+  "9780307743657": {
+    "isbn": "9780307743657",
+    "title": "The Road",
+    "author": "Cormac McCarthy",
+    "reviews": {}
+  }
+}
