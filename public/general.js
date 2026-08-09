@@ -1,35 +1,72 @@
-// Example client-side calls using Axios to interact with the bookstore API.
-// This file contains both promise-based and async/await examples.
 const axios = require('axios');
 
 const API_BASE = 'http://localhost:3000';
 
-// Promise-based: get all books
-function getAllBooksPromise() {
-  axios.get(`${API_BASE}/books`)
-    .then(res => console.log('All books (promise):', res.data))
-    .catch(err => console.error(err.response ? err.response.data : err.message));
+// 1. Get all books using Promise
+function getAllBooks() {
+    return axios.get(`${API_BASE}/books`)
+        .then(response => {
+            console.log('All Books:', response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error(
+                error.response ? error.response.data : error.message
+            );
+        });
 }
 
-// Async/await: get books by author
+// 2. Get book by ISBN using async/await
+async function getBooksByISBN(isbn) {
+    try {
+        const response = await axios.get(
+            `${API_BASE}/books/isbn/${isbn}`
+        );
+
+        console.log('Book by ISBN:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error(
+            error.response ? error.response.data : error.message
+        );
+    }
+}
+
+// 3. Get books by Author using async/await
 async function getBooksByAuthor(author) {
-  try {
-    const res = await axios.get(`${API_BASE}/books/author/${encodeURIComponent(author)}`);
-    console.log(`Books by ${author}:`, res.data);
-  } catch (err) {
-    console.error(err.response ? err.response.data : err.message);
-  }
+    try {
+        const response = await axios.get(
+            `${API_BASE}/books/author/${encodeURIComponent(author)}`
+        );
+
+        console.log('Books by Author:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error(
+            error.response ? error.response.data : error.message
+        );
+    }
 }
 
-// Async/await: get book by ISBN
-async function getBookByISBN(isbn) {
-  try {
-    const res = await axios.get(`${API_BASE}/books/isbn/${isbn}`);
-    console.log(`Book ${isbn}:`, res.data);
-  } catch (err) {
-    console.error(err.response ? err.response.data : err.message);
-  }
+// 4. Get books by Title using async/await
+async function getBooksByTitle(title) {
+    try {
+        const response = await axios.get(
+            `${API_BASE}/books/title/${encodeURIComponent(title)}`
+        );
+
+        console.log('Books by Title:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error(
+            error.response ? error.response.data : error.message
+        );
+    }
 }
 
-// Export for use in Node-based test scripts
-module.exports = { getAllBooksPromise, getBooksByAuthor, getBookByISBN };
+module.exports = {
+    getAllBooks,
+    getBooksByISBN,
+    getBooksByAuthor,
+    getBooksByTitle
+};
